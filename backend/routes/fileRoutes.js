@@ -1,6 +1,7 @@
 import express from 'express';
 import multer from 'multer';
 import { saveFile,getFile,getUploadedFiles,deleteFile} from "../controller/fileController.js";
+import { identifyPlant } from '../controller/Identify.js';
 
 const router = express.Router();
 
@@ -15,5 +16,6 @@ router.post('/upload', upload.single('file'), saveFile);
 router.get('/:filename', getFile);
 router.get('/', getUploadedFiles);
 router.delete('/:fileId', deleteFile);
+router.post("/identify", upload.single("image"), identifyPlant);
 
 export default router;

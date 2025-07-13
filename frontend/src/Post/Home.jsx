@@ -152,7 +152,7 @@ const Home = () => {
       <AyurvedaPage />
       <Service />
       <Experts />
-      <PlayStoreApp />
+      {/* <PlayStoreApp /> */}
     </div>
   );
 };

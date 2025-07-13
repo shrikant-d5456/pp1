@@ -1,3 +1,6 @@
+import dotenv from 'dotenv';
+dotenv.config();
+
 import Groq from 'groq-sdk';
 
 const groq = new Groq({
@@ -19,13 +22,13 @@ export const generateSummary = async (req, res) => {
           content: `Summarize the following text:\n\n${text}`,
         },
       ],
-      model: 'llama3-70b-8192', // or llama3-8b-8192
+      model: 'llama3-70b-8192',
     });
 
     const summary = response.choices[0]?.message?.content?.trim();
     res.status(200).json({ summary });
   } catch (error) {
     console.error('Groq API Error:', error.message);
-    res.status(500).json({ error:"error to generate summury"});
+    res.status(500).json({ error: 'Error generating summary.' });
   }
 };

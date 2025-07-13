@@ -68,7 +68,7 @@ const Slider = () => {
       </AutoplaySlider>
 
       {isOpen && hasShowPopup && (
-        <div className='fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-start space-x-2 bg-green-50 border border-gray-300 rounded-md p-4 max-w-md shadow-lg'>
+        <div className='fixed bottom-6 left-1/2 transform -translate-x-1/2 z-50 flex items-start space-x-2 bg-green-50 border border-gray-300 rounded-md p-4 lg:max-w-md w-full shadow-lg'>
           <button
             className='text-gray-500 hover:text-green-700 focus:outline-none'
             onClick={() => setIsOpen(false)}

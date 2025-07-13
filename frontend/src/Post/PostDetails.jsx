@@ -317,7 +317,9 @@ const PostDetails = () => {
           {summary && (
             <div className="my-4 p-4 bg-gray-100 border-l-4 border-green-500">
               <h2 className="font-bold text-green-700 mb-2">Summary:</h2>
-              <p className="text-sm text-gray-800">{summary}</p>
+              <p className="text-sm text-gray-800">
+                <Lang translateWord={summary} targetLang={targetLang} />
+                </p>
             </div>
           )}
 
