@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import PostCard from './PostCard.jsx';
 import axios from 'axios';
 import Slider from '../components/Slider.jsx';
@@ -27,9 +27,14 @@ const Home = () => {
       setLoading(false);
     }
   };
-
+const scrollToTop = useRef();
   useEffect(() => {
     getposts();
+     const elementPosition = scrollToTop.current?.getBoundingClientRect().top ?? 0;
+      window.scrollTo({
+        top: window.pageYOffset + elementPosition - 100,
+        behavior: "smooth",
+      });
   }, []);
 
   if (loading) {
@@ -76,12 +81,11 @@ const Home = () => {
       img: "https://th.bing.com/th/id/OIP.OSYk3IFC-C2FO9QZjF3bHwHaLH?w=120&h=180&c=7&r=0&o=5&dpr=1.3&pid=1.7",
       data: "juices"
     },
-
-
   ]
 
+
   return (
-    <div className='w-full'>
+    <div ref={scrollToTop} className='w-full'>
       <div className='text-sm w-full bg-white flex md:justify-center justify-start lg:px-0 px-4 items-center py-4 text-[#284525] lg:gap-20 gap-10 border-[1px] border-t-gray-200 border-b-gray-200 overflow-x-scroll shadow-md'>
         <ul className="flex gap-10 lg:gap-20 list-none">
           <li className='hover:text-green lg:tracking-widest lg:uppercase w-full'>
@@ -94,7 +98,7 @@ const Home = () => {
             <Link to="/plant-informaion">Plant Information</Link>
           </li>
           <li className='hover:text-green lg:tracking-widest lg:uppercase w-full'>
-            <Link to="/practitioner">Practitioner's</Link>
+            <Link to="/practitioner">Practitioner</Link>
           </li>
           <li className='hover:text-green lg:tracking-widest lg:uppercase w-full'>
             <Link to="/diseases">Diseases</Link>

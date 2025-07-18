@@ -30,7 +30,7 @@ app.use("/auth/user", userRouter);
 app.use("/auth/post", postRouter);
 app.use("/auth/comment", commentRouter);
 app.use("/auth/api/post", medicineRoutes);
-app.use("/auth/api", adminRoutes);
+// app.use("/auth/api", adminRoutes);
 app.use("/api/files", fileRoutes);
 app.use('/api/summary',TextSummury);
 app.use('/api/translate',Translate );

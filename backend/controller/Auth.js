@@ -65,39 +65,42 @@ export const register = async (req, res) => {
 };
 
 
-export const login =  async (req, res) => {
-    try {
-        const { email, password } = req.body;
+export const login = async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    console.log("Login Attempt:", email, password);
 
-        const user = await User.findOne({ email });
-        if (!user) {
-            return res.status(400).send({ msg: 'invalid email' });
-        }
-
-        // Compare the password
-        const isMatch = await bcryptjs.compare(password, user.password);
-        if (!isMatch) {
-            return res.status(400).send({ msg: 'Invalid password' });
-        }
-
-        // Create a JWT token
-        const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
-
-        res.status(200).send({
-            msg: 'Login successful',
-            token,
-            id:user._id,
-            username:user.username,
-            email:email
-        });
-
-    } catch (err) {
-        res.status(500).send({
-            msg: 'Error while logging in',
-            error: err.message
-        });
+    const user = await User.findOne({ email });
+    if (!user) {
+      console.log("No user found with email:", email);
+      return res.status(400).send({ msg: 'invalid email' });
     }
+
+    const isMatch = await bcryptjs.compare(password, user.password);
+    if (!isMatch) {
+      console.log("Incorrect password for email:", email);
+      return res.status(400).send({ msg: 'Invalid password' });
+    }
+
+    const token = jwt.sign({ id: user._id }, 'your_jwt_secret', { expiresIn: '1h' });
+
+    res.status(200).send({
+      msg: 'Login successful',
+      token,
+      id: user._id,
+      username: user.username,
+      email: user.email
+    });
+
+  } catch (err) {
+    console.error("Login Error:", err);
+    res.status(500).send({
+      msg: 'Error while logging in',
+      error: err.message
+    });
+  }
 };
+
 
 export const logout =  (req, res) => {
     try {

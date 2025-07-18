@@ -61,16 +61,14 @@ const Email = ({ username, userEmail, validation_length }) => {
         "📊 Track performance using platform insights.\n" +
         "📞 For any modifications, contact support.");
     } else {
-      setMsg("⚠️ Your post has been checked but is not hosted yet.\n" +
-        "🔍 Validation is still in progress.\n" +
-        "📜 Some refinements might be required.\n" +
-        "⚡ Ensure all guidelines are met.\n" +
-        "⏳ Awaiting further review.\n" +
-        "🔄 Next steps will be communicated soon.\n" +
-        "📢 Please check your email for updates.\n" +
-        "📧 If urgent, contact support for assistance.\n" +
-        "🛠 Minor changes may speed up approval.\n" +
-        "📞 Thank you for your patience.");
+      setMsg("⚠️ Your post could not be hosted at this time.\n"+
+        "🔍 Validation was initiated, but the submission didn't meet all hosting criteria.\n"+
+        "📜 Please review the guidelines and refine your content as needed.\n"+
+        "⚡ A few minor tweaks might help accelerate approval.\n"+
+        "⏳ The status is on hold while further checks are carried out.\n"+
+        "📢 You’ll receive updates via email with next steps.\n"+
+        "📧 For urgent matters, feel free to contact our support team.\n"+
+        "📞 We appreciate your understanding and patience!");
     }
 
   }, [validation_length]);

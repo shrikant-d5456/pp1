@@ -52,42 +52,41 @@ const Diseases = () => {
 
       <div className=" fixed top-0 bg-white w-full py-4 mt-24 ">
 
-        {showOption && 
-        <div className="w-full flex flex-wrap gap-2 justify-center">
-        {symptoms.map((item, index) => (
-          <button
-            key={index}
-            className={`border-[1px] border-green rounded-full px-4 py-1 ${item === category ? "bg-green text-white" : "text-green"
-              }`}
-            onClick={() => setCategory(item)}
-          >
-            {item}
-          </button>
-        ))}
-        <div>
-          <input
-            type="text"
-            placeholder="Search Diseases"
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            className="border-[1px] w-fit text-sm border-gray-300 px-4 py-2 rounded-full"
-          />
-          <button
-            onClick={handleSearch}
-            className="bg-green text-white p-3 rounded-full "
-          >
-            <BsSearch />
-          </button>
-        </div>
-      </div>
+        {showOption &&
+          <div className=" z-20 w-full flex flex-wrap gap-2 justify-center">
+            {symptoms.map((item, index) => (
+              <button
+                key={index}
+                className={`border-[1px] border-green rounded-full px-4 py-1 ${item === category ? "bg-green text-white" : "text-green"
+                  }`}
+                onClick={() => setCategory(item)}
+              >
+                {item}
+              </button>
+            ))}
+            <div>
+              <input
+                type="text"
+                placeholder="Search Diseases"
+                value={input}
+                onChange={(e) => setInput(e.target.value)}
+                className="border-[1px] w-fit text-sm border-gray-300 px-4 py-2 rounded-full"
+              />
+              <button
+                onClick={handleSearch}
+                className="bg-green text-white p-3 rounded-full "
+              >
+                <BsSearch />
+              </button>
+            </div>
+          </div>
         }
 
-          <button 
-          onClick={()=>setShowOption(!showOption)}
-          className=" fixed right-1 mt-2 z-50 bg-white p-2  text-xl ">
-           {showOption ?  <BsX/> : <BsArrowDown/>  }
-          </button>
-      
+        <button
+          onClick={() => setShowOption(!showOption)}
+          className=" bg-[#2da30fef] text-white  fixed right-1 mt-4 z-50  p-2  text-xl rounded-b-full">
+          {showOption ? <BsX /> : <BsArrowDown />}
+        </button>
 
       </div>
 
@@ -108,7 +107,7 @@ const Diseases = () => {
           <div className="flex flex-col gap-2 sm:w-10/12 px-2 m-auto">
             <div className="w-full flex-row-reverse sm:flex-row flex gap-2 ">
 
-              <div className=" md:w-2/3 w-full border-[1px] border-gray-100 p-4 text-white rounded-3xl shadow-md bg-gradient-to-r from-green-800 to-green-500">
+              <div className=" md:w-2/3 w-full border-[1px] border-gray-100 p-4 text-white rounded-3xl shadow-md bg-gradient-to-r from-[#a0bd78] to-[#418617]">
                 <p className=" font-bold my-1"> Name of Disease </p>
                 {item.name}
                 <hr className=" my-2" /> <p className=" font-bold mb-1">About</p>
@@ -130,7 +129,7 @@ const Diseases = () => {
               <p>
                 <p className=" font-bold my-2">Symptoms</p>
                 {item.symptoms.map((item) => (
-                  <p className=" bg-green-200 p-2 rounded-full my-1 text-center">
+                  <p className=" bg-gradient-to-r from-[#a0bd78] to-[#418617] text-white p-2 rounded-full my-1 text-center">
                     {item}
                   </p>
                 ))}

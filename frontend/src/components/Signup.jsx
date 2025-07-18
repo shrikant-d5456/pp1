@@ -123,125 +123,134 @@ const Signup = () => {
 
 
 
- return (
-  <Modal isOpen={modalIsOpen} className="transition-all" preventScroll={false}>
-    <div className="flex w-full h-screen justify-center items-center text-center ">
-      <div className="lg:w-10/12 md:w-6/12 w-[90%] flex text-start h-[600px] border-8 border-white shadow-xl lg:rounded-tl-3xl lg:rounded-br-3xl loginbgimg">
-        
-        {/* Left Image Panel */}
-        <div className="lg:block hidden w-1/2 text-white p-4">
-          <p className='text-4xl font-bold mt-60'>Ayurveda Blog: Where Healing Meets Heritage</p>
-          <p className='text-sm mt-5'>
-            "Dive into the world of Ayurveda — a 5,000-year-old healing science rooted in nature.
-            Read, post, and share natural remedies, wellness tips, and herbal knowledge to empower and heal."
-          </p>
-        </div>
+  return (
+    <Modal isOpen={modalIsOpen} className="transition-all" preventScroll={false}>
+      <div className="flex w-full h-screen justify-center items-center text-center ">
+        <div className="lg:w-10/12 md:w-6/12 w-[90%] flex text-start h-[600px] border-8 border-white shadow-xl lg:rounded-tl-3xl lg:rounded-br-3xl loginbgimg">
 
-        {/* Right Form Panel */}
-        <div className="relative lg:w-1/2 w-full flex flex-col gap-4 bg-white p-4  overflow-y-auto max-h-full">
-          <button
-            className="absolute top-4 left-4 text-2xl text-gray-400 rounded-full"
-            onClick={CloseEventCall}
-          >
-            <BsXCircleFill />
-          </button>
-
-          <p className="font-bold text-xl text-center text-gray-800">
-            Discover <br /> Ancient Ayurveda Wisdom
-          </p>
-
-          <p className="text-md text-center text-green font-bold">
-            Welcome to Signup Page
-          </p>
-
-          <p className="text-sm text-center text-gray-500">Step {step} of 3</p>
-
-          <form onSubmit={handleRegister} className="space-y-3 w-full">
-            {step === 1 && (
-              <>
-                <input name="username" value={formData.username} onChange={handleChange} placeholder="Username" className=" w-full text-center inp" />
-                {errors.username && <p className="text-red-500 text-xs p-0">{errors.username}</p>}
-
-                <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email" className=" w-full text-center inp" />
-                {errors.email && <p className="text-red-500 text-xs p-0">{errors.email}</p>}
-
-                <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="Password" className=" w-full text-center inp" />
-                {errors.password && <p className="text-red-500 text-xs p-0">{errors.password}</p>}
-              </>
-            )}
-
-            {step === 2 && (
-              <>
-                <input name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" className=" w-full text-center inp" />
-                {errors.fullName && <p className="text-red-500 text-xs p-0">{errors.fullName}</p>}
-
-                <input name="phoneNo" value={formData.phoneNo} onChange={handleChange} placeholder="Phone Number" className=" w-full text-center inp" />
-                {errors.phoneNo && <p className="text-red-500 text-xs p-0">{errors.phoneNo}</p>}
-
-                <input name="age" value={formData.age} onChange={handleChange} placeholder="Age" className=" w-full text-center inp" />
-                {errors.age && <p className="text-red-500 text-xs p-0">{errors.age}</p>}
-
-                <select name="gender" value={formData.gender} onChange={handleChange} className=" w-full text-center inp">
-                  <option value="">Select Gender</option>
-                  <option>Male</option>
-                  <option>Female</option>
-                  <option>Other</option>
-                </select>
-                {errors.gender && <p className="text-red-500 text-xs p-0">{errors.gender}</p>}
-              </>
-            )}
-
-            {step === 3 && (
-              <>
-                <select name="educationLevel" value={formData.educationLevel} onChange={handleChange} className=" w-full text-center inp">
-                  <option value="">Select Education Level</option>
-                  <option>Primary</option>
-                  <option>Secondary</option>
-                  <option>Higher Secondary</option>
-                  <option>Graduate</option>
-                  <option>Postgraduate</option>
-                  <option>Other</option>
-                </select>
-                {errors.educationLevel && <p className="text-red-500 text-xs p-0">{errors.educationLevel}</p>}
-
-                <input name="languagesSpoken" value={formData.languagesSpoken} onChange={handleChange} placeholder="Languages (comma separated)" className=" w-full text-center inp" />
-                {errors.languagesSpoken && <p className="text-red-500 text-xs p-0">{errors.languagesSpoken}</p>}
-
-                <input name="address.street" value={formData.address.street} onChange={handleChange} placeholder="Street" className=" w-full text-center inp" />
-                <input name="address.city" value={formData.address.city} onChange={handleChange} placeholder="City" className=" w-full text-center inp" />
-                <input name="address.state" value={formData.address.state} onChange={handleChange} placeholder="State" className=" w-full text-center inp" />
-                <input name="address.pincode" value={formData.address.pincode} onChange={handleChange} placeholder="Pincode" className=" w-full text-center inp" />
-                {errors.address && <p className="text-red-500 text-xs p-0">{errors.address}</p>}
-              </>
-            )}
-
-            <div className="flex justify-between">
-              {step > 1 && (
-                <button type="button" onClick={handleBack} className="px-4 py-1 bg-gray-300 rounded-full hover:bg-gray-400">
-                  Back
-                </button>
-              )}
-              {step < 3 ? (
-                <button type="button" onClick={handleNext} className="px-4 py-1 bg-green text-white rounded-full hover:bg-green-800">
-                  Next
-                </button>
-              ) : (
-                <button type="submit" className="px-4 py-1 bg-green text-white rounded-full hover:bg-green-800">
-                  Sign Up
-                </button>
-              )}
-            </div>
-
-            <p className="text-sm text-center">
-              Already have an account?
-              <Link to="/login" className="text-blue-500 font-semibold underline ml-1">Login</Link>
+          {/* Left Image Panel */}
+          <div className="lg:block hidden w-1/2 text-white p-4">
+            <p className='text-4xl font-bold mt-60'>Ayurveda Blog: Where Healing Meets Heritage</p>
+            <p className='text-sm mt-5'>
+              "Dive into the world of Ayurveda — a 5,000-year-old healing science rooted in nature.
+              Read, post, and share natural remedies, wellness tips, and herbal knowledge to empower and heal."
             </p>
-          </form>
+          </div>
+
+          {/* Right Form Panel */}
+          <div className="relative lg:w-1/2 w-full flex flex-col gap-4 bg-white p-4  overflow-y-auto max-h-full">
+            <button
+              className="absolute top-4 left-4 text-2xl text-gray-400 rounded-full"
+              onClick={CloseEventCall}
+            >
+              <BsXCircleFill />
+            </button>
+
+            <p className="font-bold text-xl text-center text-gray-800">
+              Discover <br /> Ancient Ayurveda Wisdom
+            </p>
+
+            <p className="text-md text-center text-green font-bold">
+              Welcome to Signup Page
+            </p>
+
+            <p className="text-sm text-center text-gray-500">Step {step} of 3</p>
+
+            <form onSubmit={handleRegister} className="space-y-3 w-full">
+              {step === 1 && (
+                <>
+                  <input name="username" value={formData.username} onChange={handleChange} placeholder="Username" className=" w-full text-center inp" />
+                  {errors.username && <p className="text-red-500 text-xs p-0">{errors.username}</p>}
+
+                  <input name="email" type="email" value={formData.email} onChange={handleChange} placeholder="Email" className=" w-full text-center inp" />
+                  {errors.email && <p className="text-red-500 text-xs p-0">{errors.email}</p>}
+
+                  <input name="password" type="password" value={formData.password} onChange={handleChange} placeholder="Password" className=" w-full text-center inp" />
+                  {errors.password && <p className="text-red-500 text-xs p-0">{errors.password}</p>}
+                </>
+              )}
+
+              {step === 2 && (
+                <>
+                  <input name="fullName" value={formData.fullName} onChange={handleChange} placeholder="Full Name" className=" w-full text-center inp" />
+                  {errors.fullName && <p className="text-red-500 text-xs p-0">{errors.fullName}</p>}
+
+                  <input name="phoneNo" value={formData.phoneNo} onChange={handleChange} placeholder="Phone Number" className=" w-full text-center inp" />
+                  {errors.phoneNo && <p className="text-red-500 text-xs p-0">{errors.phoneNo}</p>}
+
+                  <input name="age" value={formData.age} onChange={handleChange} placeholder="Age" className=" w-full text-center inp" />
+                  {errors.age && <p className="text-red-500 text-xs p-0">{errors.age}</p>}
+
+                  <select name="gender" value={formData.gender} onChange={handleChange} className=" w-full text-center inp">
+                    <option value="">Select Gender</option>
+                    <option>Male</option>
+                    <option>Female</option>
+                    <option>Other</option>
+                  </select>
+                  {errors.gender && <p className="text-red-500 text-xs p-0">{errors.gender}</p>}
+                </>
+              )}
+
+              {step === 3 && (
+                <>
+                  <select name="educationLevel" value={formData.educationLevel} onChange={handleChange} className=" w-full text-center inp">
+                    <option value="">Select Education Level</option>
+                    <option>Primary</option>
+                    <option>Secondary</option>
+                    <option>Higher Secondary</option>
+                    <option>Graduate</option>
+                    <option>Postgraduate</option>
+                    <option>Other</option>
+                  </select>
+                  {errors.educationLevel && <p className="text-red-500 text-xs p-0">{errors.educationLevel}</p>}
+
+                  <input name="languagesSpoken" value={formData.languagesSpoken} onChange={handleChange} placeholder="Languages (comma separated)" className=" w-full text-center inp" />
+                  {errors.languagesSpoken && <p className="text-red-500 text-xs p-0">{errors.languagesSpoken}</p>}
+
+                  <input name="address.street" value={formData.address.street} onChange={handleChange} placeholder="Street" className=" w-full text-center inp" />
+                  <input name="address.city" value={formData.address.city} onChange={handleChange} placeholder="City" className=" w-full text-center inp" />
+                  <input name="address.state" value={formData.address.state} onChange={handleChange} placeholder="State" className=" w-full text-center inp" />
+                  <input name="address.pincode" value={formData.address.pincode} onChange={handleChange} placeholder="Pincode" className=" w-full text-center inp" />
+                  {errors.address && <p className="text-red-500 text-xs p-0">{errors.address}</p>}
+                  <div>
+                    <label className="flex justify-start items-center">
+                      <input type="checkbox" className=" text-xs  rounded mr-2" required />
+                      <span className=' text-sm'> 
+                        I agree to the <a target='_blank' href="https://sprightly-jelly-8a9a67.netlify.app/"> <span className=' text-blue-500 hover:underline  '>Privacy Policy</span></a>
+                         and  <a target='_blank' href="https://thunderous-kataifi-d6b77b.netlify.app/"> <sapn className=' text-blue-500 hover:underline   '>Terms & Conditions</sapn></a>.
+                      </span>
+                    </label>
+                  </div>
+                </>
+              )}
+
+              <div className="flex justify-between">
+                {step > 1 && (
+                  <button type="button" onClick={handleBack} className="px-4 py-1 bg-gray-300 rounded-full hover:bg-gray-400">
+                    Back
+                  </button>
+                )}
+                {step < 3 ? (
+                  <button type="button" onClick={handleNext} className="px-4 py-1 bg-green text-white rounded-full hover:bg-green-800">
+                    Next
+                  </button>
+                ) : (
+                  <button type="submit" className="px-4 py-1 bg-green text-white rounded-full hover:bg-green-800">
+                    Sign Up
+                  </button>
+                )}
+              </div>
+
+              <p className="text-sm text-center">
+                Already have an account?
+                <Link to="/login" className="text-blue-500 font-semibold underline ml-1">Login</Link>
+              </p>
+            </form>
+          </div>
         </div>
       </div>
-    </div>
-  </Modal>
-);
+    </Modal>
+  );
 
 };
 

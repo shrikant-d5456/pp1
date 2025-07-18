@@ -1,7 +1,7 @@
 import axios from 'axios';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
-import React, { useContext, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import { UserContext } from '../Utils/UserContext';
 import { useNavigate } from 'react-router-dom';
 import { BsPlusCircleFill, BsXCircle } from 'react-icons/bs';
@@ -28,7 +28,7 @@ const Createpost = () => {
     const [desc, setDesc] = useState("");
     const [established, setEstablished] = useState("");
     const [places, setPlaces] = useState("");
-    const [wpmh, setWpmh] = useState("");
+    const [wpmh, setWpmh] = useState("anybudy");
     const [vitamin, setVitsmin] = useState("");
     const [video_link, setVideo_link] = useState("");
 
@@ -71,12 +71,44 @@ const Createpost = () => {
 
     const validateForm = () => {
         if (!user?.id) return toast.error("Please login to create a post!") && false;
-        if (
-            !mainCategory.trim() || !title.trim() || !img.trim() || !desc.trim() ||
-            !established || !places.trim() || !wpmh.trim() || !vitamin.trim() ||
-            ingredients.length === 0 || steps.length === 0 || cats.length === 0
-        ) {
-            toast.error("Please fill out all required fields.");
+        if (!mainCategory.trim()) {
+            toast.error("Main category is required.");
+            return false;
+        }
+        if (!title.trim()) {
+            toast.error("Title is required.");
+            return false;
+        }
+        if (!img.trim()) {
+            toast.error("Image URL is required.");
+            return false;
+        }
+        if (!desc.trim()) {
+            toast.error("Description is required.");
+            return false;
+        }
+        if (!established) {
+            toast.error("Established date is required.");
+            return false;
+        }
+        if (!places.trim()) {
+            toast.error("Places field is required.");
+            return false;
+        }
+        if (!vitamin.trim()) {
+            toast.error("Vitamin information is required.");
+            return false;
+        }
+        if (ingredients.length === 0) {
+            toast.error("At least one ingredient is required.");
+            return false;
+        }
+        if (steps.length === 0) {
+            toast.error("At least one step is required.");
+            return false;
+        }
+        if (cats.length === 0) {
+            toast.error("At least one category is required.");
             return false;
         }
         return true;
@@ -97,7 +129,7 @@ const Createpost = () => {
                 userId: user.id,
                 established,
                 places,
-                wpmh,
+                wpmh: wpmh,
                 vitamin,
                 ingredient: ingredients,
                 step: steps,
@@ -114,6 +146,18 @@ const Createpost = () => {
         }
     };
 
+    useEffect(() => {
+        setTimeout(() => {
+            toast.warn("Please select Main category before uploading data.");
+        }, (1500));
+        const elementPosition = scrollToTop.current?.getBoundingClientRect().top ?? 0;
+        window.scrollTo({
+            top: window.pageYOffset + elementPosition - 100,
+            behavior: "smooth",
+        });
+    }, [])
+    const scrollToTop = useRef();
+    
     const topHeading = mainCategory === "Ancient Remedies"
         ? "Ayurveda Blog: Create & Share Ancient Remedies"
         : mainCategory === "Wild Vegetables"
@@ -125,7 +169,7 @@ const Createpost = () => {
         : "Contribute your Ayurvedic wisdom with detailed ingredients, steps, and healing benefits. Empower others through the science of nature.";
 
     return (
-        <div className='flex w-full lg:w-10/12 m-auto flex-col justify-center items-center text-center bg-[#c8ffb9] min-h-screen mb-10 shadow-lg'>
+        <div ref={scrollToTop} className='flex w-full lg:w-10/12 m-auto flex-col justify-center items-center text-center bg-[#c8ffb9] min-h-screen mb-10 shadow-lg'>
 
             {/* Top Banner Section */}
             <div className="w-full h-[300px] text-white p-4 flex flex-col justify-center items-center loginbgimg">
@@ -158,11 +202,14 @@ const Createpost = () => {
                 </select>
 
                 <input value={title} onChange={(e) => setTitle(e.target.value)} type="text" placeholder='Post title 💡' className='inp' />
+                {img &&
+                    <img src={img} alt="your uploaded image" className=' w-full h-[400px] object-cover bg-no-Img-found ' />
+                }
                 <input value={img} onChange={(e) => setImg(e.target.value)} type='text' placeholder='Image URL 🌿' className='inp' />
                 <input value={video_link} onChange={(e) => setVideo_link(e.target.value)} type='text' placeholder='Video Link ▶️' className='inp' />
                 <input value={established} onChange={(e) => setEstablished(e.target.value)} type='date' className='inp' />
                 <input value={places} onChange={(e) => setPlaces(e.target.value)} type='text' placeholder='Place of origin 🗺️' className='inp' />
-                {mainCategory=="Ancient Remedies" &&
+                {mainCategory == "Ancient Remedies" &&
                     <input value={wpmh} onChange={(e) => setWpmh(e.target.value)} type='text' placeholder='Harmful for patients 🤒' className='inp' />
                 }
                 {/* <input value={wpmh} onChange={(e) => setWpmh(e.target.value)} type='text' placeholder='Harmful for patients 🤒' className='inp' /> */}

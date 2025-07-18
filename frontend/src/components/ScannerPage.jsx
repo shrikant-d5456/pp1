@@ -1,4 +1,4 @@
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { BsCameraVideo, BsImage, BsUpload, BsQrCodeScan, BsSearch } from 'react-icons/bs';
 import Webcam from 'react-webcam';
 import axios from 'axios';
@@ -85,8 +85,17 @@ const ScannerPage = () => {
     setScanInfo(null);
   };
 
+  const scrollToTop = useRef();
+  useEffect(() => {
+    const elementPosition = scrollToTop.current?.getBoundingClientRect().top ?? 0;
+    window.scrollTo({
+      top: window.pageYOffset + elementPosition - 100,
+      behavior: "smooth",
+    });
+  }, []);
+
   return (
-    <div className='w-full  overflow-scroll text-white flex flex-col items-center justify-center p-4'>
+    <div ref={scrollToTop} className='w-full overflow-scroll text-white flex flex-col items-center justify-center p-4'>
       <div className='border-2 border-black border-dashed p-8 bg-white w-full max-w-3xl text-center'>
         <h1 className='text-4xl font-bold text-black mb-2'>AayurMedGuide Image Scanner</h1>
         <p className='text-lg text-gray-600 mb-6'>
@@ -115,7 +124,7 @@ const ScannerPage = () => {
       {mode === 'upload' && (
         <div className='m-6 '>
           <label className=' text-black flex gap-4 text-sm font-bold justify-center items-center cursor-pointer bg-white  border-2 border-dashed border-green-500 p-2 rounded-lg animate-pulse'>
-            <BsUpload  />
+            <BsUpload />
             <span >Click to upload an image</span>
             <input type='file' accept='image/*' onChange={handleImageUpload} className='hidden' />
           </label>
@@ -197,7 +206,7 @@ const ScannerPage = () => {
                     </div>
                   );
                 } catch (err) {
-                  return <p className="text-red-500">⚠️ plant information.</p>;
+                  return <p className="text-red-500">⚠️ plant not detected .</p>;
                 }
               })()}
             </div>

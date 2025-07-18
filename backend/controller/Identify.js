@@ -15,6 +15,7 @@ export const identifyPlant = async (req, res) => {
       headers: formData.getHeaders(),
     });
     res.json(response.data);
+    console.log(response.data);
   } catch (error) {
     console.error("error to identifying img :", error.message);
     console.error("🔥 Axios error response:", error?.response?.data || 'No response data');

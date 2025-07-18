@@ -28,9 +28,10 @@ const ProfilePost = () => {
     <>
       {userPosts.length > 0 ? (
         userPosts.map((post, index) => (
+          <div className=' w-full p-4 border bg-white'>
           <Link key={index} to={post.validator1 && post.validator2 &&post.validator3 &&post.validator4 &&post.validator5 ? `/posts/post/${post._id}`:`/posts/post/post-validatation/${post._id}`} className='lg:w-1/3 border-[1px] border-gray-200 bg-white p-4 shadow text-sm '>
           <div key={index} className=' w-full' >
-            <img loading="lazy" className='w-full h-[150px]' src={post.img} alt="" />
+            <img loading="lazy" className='w-full h-[140px] object-fill' src={post.img} alt="" />
             <h1 className='text-justify my-2 font-semibold text-gray-800 line-clamp-2'>{post.title}</h1>
             <div className=' my-2 text-gray-600 text-justify line-clamp-2'>
               <div
@@ -39,6 +40,7 @@ const ProfilePost = () => {
               />..Read More</div>
           </div>
           </Link>
+          </div>
         ))
       ) : (
         <p>No posts yet</p>

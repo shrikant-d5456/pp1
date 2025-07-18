@@ -8,8 +8,8 @@ import Modal from "react-modal";
 import AdminIDs from '../Utils/AdminIDs.jsx';
 import {toast} from 'react-toastify';
 const Login = () => {
-  const [email, setEmail] = useState("user@gmail.com");
-  const [password, setPassword] = useState("user");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [err, setErr] = useState(false);
   const { setUser } = useContext(UserContext);
   const [modalIsOpen, setModalIsOpen] = useState(true);

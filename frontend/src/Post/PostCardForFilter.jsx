@@ -6,7 +6,7 @@ import { BsEye } from 'react-icons/bs';
 const PostCardForFilter = ({ post, hovereffect=true },  hover ) => {
 
   const { user } = useContext(UserContext);
-  console.log(post);
+  // console.log(post);
 
   let userType;
 

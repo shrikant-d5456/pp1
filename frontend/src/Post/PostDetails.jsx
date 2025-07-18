@@ -65,7 +65,8 @@ const PostDetails = () => {
         setChecked(`checked${adminIndex}`);
       }
     }
-  }, [post, user]);
+  }, [post, user, checked]);
+  
 
   const deletePost = async () => {
     if (confirm("Are you sure you want to delete this post?")) {
@@ -78,6 +79,9 @@ const PostDetails = () => {
       }
     }
   };
+let validation_length = 0;
+validation_length =
+    (post.validator1 && 1) + post.validator2 + post.validator3 + post.validator4 + post.validator5;
 
   const validateBy = async (isValid) => {
     try {
@@ -85,10 +89,13 @@ const PostDetails = () => {
         [`${validator}`]: isValid ? "true" : "false",
       });
       setValid(isValid);
+      
     } catch (err) {
       console.log(err);
     }
   };
+
+  
 
   const checkedBy = async (checkStatus) => {
     try {
@@ -102,6 +109,7 @@ const PostDetails = () => {
       console.log(err);
     }
   };
+
 
   const generateSummary = async () => {
     if (!post?.desc) {
@@ -183,13 +191,10 @@ const PostDetails = () => {
   const handleResume = () => { synth.resume(); setActive({ resume: true }) }
   const handleStop = () => { synth.cancel(); setActive({ close: true }) }
 
-  let validation_length = 0;
-  validation_length =
-    (post.validator1 && 1) + post.validator2 + post.validator3 + post.validator4 + post.validator5;
-
+  
   return (
-    <div className='lg:w-full lg:px-4 px-4 sm:flex m-auto bg-white pt-4'>
-      <div className={`md:w-3/4 ${AdminIDs.some(admin => admin.id === user?.id && "w-full")} w-full`}>
+    <div className='lg:w-full  h-[200vh] overflow-scroll lg:px-4 px-4 sm:flex  m-auto bg-white pt-4 '>
+      <div className={`md:w-3/4  ${AdminIDs.some(admin => admin.id === user?.id && "w-full")} w-full`}>
         <div className=' relative w-full bg-transparent text-black'>
 
           <div className=' w-full absolute z-50'>
@@ -215,7 +220,7 @@ const PostDetails = () => {
           </div>
 
           <div className=' relative bg-no-Img-found'>
-            <img loading="lazy" src={post?.img}  className=' h-[500px] w-full object-cover' />
+            <img loading="lazy" src={post?.img} className=' h-[500px] w-full object-cover' />
             <button
               className=" bottom-5 bg-white/80 right-0 absolute flex justify-center items-center gap-2 text-sm border  py-2 px-4 mt-2"
               onClick={() => handleSave(user.id, id)}
@@ -319,7 +324,7 @@ const PostDetails = () => {
               <h2 className="font-bold text-green-700 mb-2">Summary:</h2>
               <p className="text-sm text-gray-800">
                 <Lang translateWord={summary} targetLang={targetLang} />
-                </p>
+              </p>
             </div>
           )}
 
@@ -365,10 +370,7 @@ const PostDetails = () => {
           {(user && AdminIDs.some(admin => admin.id === user.id)) && (
             <div className="w-full p-4  my-6 bg-[#bdffa9] shadow-md">
               {/* Header */}
-              <div className="flex items-center justify-between flex-wrap gap-2">
-                <Email username={post.username} userEmail={post.email} validation_length={validation_length} />
-                <span className="text-sm text-center w-full text-gray-600">You can change your validation anytime.</span>
-              </div>
+              <p className="text-xl font-semibold text-center my-4 w-full text-gray-600">You can change your validation anytime.</p>
 
               {/* Validation Buttons */}
               <div className="mt-4 flex flex-wrap justify-center items-center gap-3">
@@ -399,8 +401,11 @@ const PostDetails = () => {
                   {check ? "Checked! ✓" : "Check & Close"}
                 </button>
               </div>
-            </div>
 
+              <div className="flex items-center justify-between flex-wrap gap-2">
+                <Email username={post.username} userEmail={post.email} validation_length={validation_length} />
+              </div>
+            </div>
           )}
         </div>
 
@@ -408,7 +413,7 @@ const PostDetails = () => {
       </div>
 
       {!AdminIDs.some(admin => admin.id === user?.id) && (
-        <div className='w-1/4 md:block hidden overscroll-y-scroll'>
+        <div className='w-1/4 md:block hidden overflow-scroll  '>
           {/* <p className='pl-6 font-bold '>Also check these posts</p> */}
           {posts.map(p => (
             <div key={p._id} className=' pl-4' >

@@ -1,4 +1,4 @@
-import axios from 'axios'; 
+import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react';
 import { UserContext } from '../Utils/UserContext';
 import PostCard from './PostCard';
@@ -46,15 +46,23 @@ const SavePost = () => {
   }, []);
 
   return (
-    <div className='w-10/12 m-auto  grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 justify-start mb-8'>
-      {matchedPosts.length > 0 ? (
+    
+      <div className='w-10/12 m-auto '>
+      <div className=' w-full'>
+        <p className='text-2xl font-semibold my-4 pl-2 text-gray-800'>Your Saved Post</p>
+        <hr className='border-[#00ff26] border-[1px] bg-white' />
+      </div>
+      <div className=' w-full m-auto  grid md:grid-cols-4 sm:grid-cols-2 grid-cols-1 gap-2 justify-start mb-8'>
+        {matchedPosts.length > 0 ? (
         matchedPosts.map(post => (
           <PostCard key={post._id} post={post} />
         ))
       ) : (
         <p className='text-center w-full'>No saved posts found.</p>
       )}
+      </div>
     </div>
+   
   );
 };
 

@@ -10,7 +10,7 @@ const Allergies = () => {
   const [filteredAllergies, setFilteredAllergies] = useState(allergy);
   const [magic, setMagic] = useState(false);
 
-   const [showOption, setShowOption] = useState(true);
+  const [showOption, setShowOption] = useState(true);
 
 
   const symptoms = ["Hives", "Rash", "difficulty breathing", "Stomach cramps", "swelling"];
@@ -52,7 +52,7 @@ const Allergies = () => {
       <div className=" fixed top-0 bg-white w-full py-4 mt-24 ">
 
         {showOption &&
-          <div className="w-full flex flex-wrap gap-2 justify-center">
+          <div className=" z-20 w-full flex flex-wrap gap-2 justify-center">
             {symptoms.map((item, index) => (
               <button
                 key={index}
@@ -83,7 +83,7 @@ const Allergies = () => {
 
         <button
           onClick={() => setShowOption(!showOption)}
-          className=" fixed right-1 mt-2 z-50 bg-white p-2  text-xl ">
+          className=" bg-[#2da30fef] text-white  fixed right-1 mt-4 z-50  p-2  text-xl rounded-b-full">
           {showOption ? <BsX /> : <BsArrowDown />}
         </button>
 
@@ -106,7 +106,7 @@ const Allergies = () => {
         {filteredAllergies.map((item, index) => (
           <div key={index} className="flex flex-col gap-2 sm:w-10/12 m-auto px-2 transition-all">
             <div className="w-full flex-row-reverse sm:flex-row flex gap-2 ">
-              <div className="md:w-2/3 w-full border-[1px] border-gray-100 p-4 text-white rounded-3xl shadow-md  bg-gradient-to-r from-green-800 to-green-500">
+              <div className="md:w-2/3 w-full border-[1px] border-gray-100 p-4 text-white rounded-3xl shadow-md  bg-gradient-to-r from-[#a0bd78] to-[#418617]">
 
                 <p className=" font-bold my-1"> Name of Disease </p>
                 {item.name}
@@ -132,7 +132,7 @@ const Allergies = () => {
                 {item.symptoms.map((symptom, idx) => (
                   <p
                     key={idx}
-                    className="bg-green-200 p-2 rounded-full my-1 text-center"
+                    className="bg-gradient-to-r from-[#a0bd78] to-[#418617] text-white p-2 rounded-full my-1 text-center"
                   >
                     {symptom}
                   </p>
